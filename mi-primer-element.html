@@ -1,0 +1,52 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="mi-primer-element">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+    <p>El conteo es: [[]]</p>
+    <button id="add-button">Sumar</button>
+    <button id="sustract-button">Restar</button>
+  </template>
+
+  <script>
+    /**
+     * `mi-primer-element`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class MiPrimerElement extends Polymer.Element {
+      ready() {
+        super.ready();
+        setTimeout(()=>{
+          this.prop1 = 'I\'m a custom element!';
+        }, 3000);
+        this.shadowRoot.querySelector('#add-button').addEventListener('click', () => {
+          this.counter += 1
+        });
+      }
+      static get is() { return 'mi-primer-element'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'mi-primer-element'
+          },
+          counter: {
+            type: Number,
+            value: 0,
+          },
+        };
+      }
+    }
+
+    window.customElements.define(MiPrimerElement.is, MiPrimerElement);
+  </script>
+</dom-module>
